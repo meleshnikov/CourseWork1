@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         // генерируем сотрудников
-        var employeeBook = new EmployeeBook(1000);
+        var employeeBook = new EmployeeBook(50);
 
         for (int i = 0; i < employeeBook.length(); i++) {
             employeeBook.add(RandomEmployee.genRandomEmployee());
@@ -17,14 +17,18 @@ public class Main {
         //System.out.println(employeeBook);
         //System.out.println(employeeBook.findBySalary(90_000.0));
         //System.out.println(employeeBook.findBySalary(60_000, 90_000));
-        System.out.println(employeeBook.findByDepartment(1).findBySalary(60_000, 80_000));
+        //System.out.println(employeeBook.findByDepartment(1).findBySalary(60_000, 80_000));
         System.out.println(employeeBook);
         System.out.println(employeeBook.getMinSalary());
         System.out.println(employeeBook.getMaxSalary());
-        System.out.println(employeeBook.findEmployeesWithMinSalary());
-        System.out.println(employeeBook.findEmployeesWithMaxSalary());
-        System.out.println(employeeBook.findByDepartment(3).findEmployeesWithMinSalary());
-
+        //System.out.println(employeeBook.findEmployeesWithMinSalary());
+        //System.out.println(employeeBook.findEmployeesWithMaxSalary());
+        System.out.println(employeeBook.findEmployeesWithMinSalary(3));
+        System.out.println(employeeBook.findEmployeesWithMaxSalary(3));
+        System.out.println(employeeBook.getSumOfSalaries());
+        System.out.println(employeeBook.getSumOfSalaries(3));
+        System.out.println(employeeBook.getAverageSalary());
+        System.out.println(employeeBook.getAverageSalary(3));
 
     }
 
@@ -119,7 +123,7 @@ public class Main {
         return getSumOfSalaries(findByDepartment(employees, department));
     }
 
-    public static double getAvarageSalary(Employee[] employees) {
+    public static double getAverageSalary(Employee[] employees) {
         int employeeCount = 0;
         double sum = 0.0;
         for (Employee e : employees) {
@@ -131,8 +135,8 @@ public class Main {
         return (employeeCount == 0.0) ? 0.0 : sum / employeeCount;
     }
 
-    public static double getAvarageSalary(Employee[] employees, int department) {
-        return getAvarageSalary(findByDepartment(employees, department));
+    public static double getAverageSalary(Employee[] employees, int department) {
+        return getAverageSalary(findByDepartment(employees, department));
     }
 
     public static void raiseSalary(Employee[] employees, double byPercent) {

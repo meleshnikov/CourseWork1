@@ -75,10 +75,18 @@ public class EmployeeBook {
         return findBySalary(getMinSalary());
     }
 
+    public EmployeeBook findEmployeesWithMinSalary(int department) {
+        return findByDepartment(department).findEmployeesWithMinSalary();
+    }
+
+    public EmployeeBook findEmployeesWithMaxSalary(int department) {
+        return findByDepartment(department).findEmployeesWithMaxSalary();
+    }
+
+
     public EmployeeBook findEmployeesWithMaxSalary() {
         return findBySalary(getMaxSalary());
     }
-
 
 
     public double getMinSalary() {
@@ -103,6 +111,36 @@ public class EmployeeBook {
             }
         }
         return max;
+    }
+
+    public double getSumOfSalaries() {
+        double sum = 0.0;
+        for (Employee e : employees) {
+            if (e != null) {
+                sum += e.getSalary();
+            }
+        }
+        return sum;
+    }
+
+    public double getSumOfSalaries(int department) {
+        return findByDepartment(department).getSumOfSalaries();
+    }
+
+    public double getAverageSalary() {
+        int count = 0;
+        double sum = 0.0;
+        for (Employee e : employees) {
+            if (e != null) {
+                sum += e.getSalary();
+                count++;
+            }
+        }
+        return (count == 0.0) ? 0.0 : sum / count;
+    }
+
+    public double getAverageSalary(int department) {
+        return findByDepartment(department).getAverageSalary();
     }
 
 
