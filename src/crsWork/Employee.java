@@ -1,5 +1,7 @@
 package crsWork;
 
+import java.util.Objects;
+
 public class Employee {
 
     private static int nextId;
@@ -68,4 +70,19 @@ public class Employee {
     public String getLastName() {
         return lastName;
     }
+
+    public void raiseSalary(double byPercent) {
+        double raise = salary * byPercent / 100.0;
+        salary += raise;
+    }
+
+    public boolean isFromDepartment(int department) {
+        return this.department == department;
+    }
+
+    public boolean isSalaryEqual(double salary) {
+        return this.salary == salary;
+    }
+
+
 }

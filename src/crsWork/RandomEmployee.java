@@ -33,7 +33,7 @@ public final class RandomEmployee {
         }
 
         int department = generateRandomInt(1, 5);
-        double salary = (double) generateRandomInt(20_000, 300_000);
+        double salary = (double) generateRandomInt(80_000, 82_000);
         Employee employee = new Employee(fName, mName, lName, department, salary);
         return employee;
     }
