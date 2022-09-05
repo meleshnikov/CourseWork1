@@ -19,16 +19,19 @@ public class Main {
         //System.out.println(employeeBook.findBySalary(60_000, 90_000));
         //System.out.println(employeeBook.findByDepartment(1).findBySalary(60_000, 80_000));
         System.out.println(employeeBook);
-        System.out.println(employeeBook.getMinSalary());
-        System.out.println(employeeBook.getMaxSalary());
+        //System.out.println(employeeBook.getMinSalary());
+        //System.out.println(employeeBook.getMaxSalary());
         //System.out.println(employeeBook.findEmployeesWithMinSalary());
         //System.out.println(employeeBook.findEmployeesWithMaxSalary());
-        System.out.println(employeeBook.findEmployeesWithMinSalary(3));
-        System.out.println(employeeBook.findEmployeesWithMaxSalary(3));
-        System.out.println(employeeBook.getSumOfSalaries());
-        System.out.println(employeeBook.getSumOfSalaries(3));
-        System.out.println(employeeBook.getAverageSalary());
-        System.out.println(employeeBook.getAverageSalary(3));
+        //System.out.println(employeeBook.findEmployeesWithMinSalary(3));
+        //System.out.println(employeeBook.findEmployeesWithMaxSalary(3));
+        //System.out.println(employeeBook.getSumOfSalaries());
+        //System.out.println(employeeBook.getSumOfSalaries(3));
+        //System.out.println(employeeBook.getAverageSalary());
+        //System.out.println(employeeBook.getAverageSalary(3));
+        //System.out.println(employeeBook.findByDepartment(3));
+        //employeeBook.raiseSalaryByDepartment(3, 10.0);
+        //System.out.println(employeeBook.findByDepartment(3));
 
     }
 
@@ -57,27 +60,11 @@ public class Main {
     }
 
     public static Employee[] findBySalaryLess(Employee[] employees, double salary) {
-        Employee[] filteredEmployees = new Employee[employees.length];
-        int length = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ((employees[i] != null) && (employees[i].getSalary() < salary)) {
-                filteredEmployees[length++] = employees[i];
-            }
-        }
-        filteredEmployees = Arrays.copyOf(filteredEmployees, length);
-        return filteredEmployees;
+        return findBySalary(employees, 0, salary);
     }
 
     public static Employee[] findBySalaryMore(Employee[] employees, double salary) {
-        Employee[] filteredEmployees = new Employee[employees.length];
-        int length = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ((employees[i] != null) && (employees[i].getSalary() > salary)) {
-                filteredEmployees[length++] = employees[i];
-            }
-        }
-        filteredEmployees = Arrays.copyOf(filteredEmployees, length);
-        return filteredEmployees;
+        return findBySalary(employees, salary, Double.MAX_VALUE);
     }
 
 
@@ -145,8 +132,12 @@ public class Main {
         }
     }
 
-    public static void raiseSalary(Employee[] employees, int department, double byPercent) {
-        raiseSalary(findByDepartment(employees, department), byPercent);
+    public static void raiseSalaryByDepartment(Employee[] employees, int department, double byPercent) {
+        for (int i = 0; i < employees.length; i++) {
+            if ((employees[i] != null) && (employees[i].isFromDepartment(department))) {
+                employees[i].raiseSalary(byPercent);
+            }
+        }
     }
 
     public static void printEmployees(Employee[] employees) {

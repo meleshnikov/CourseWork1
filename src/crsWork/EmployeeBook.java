@@ -21,6 +21,28 @@ public class EmployeeBook {
         employees[employees.length - 1] = employee;
     }
 
+    public void removeById(int id) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (employees[i].getId() == id) {
+                    employees[i] = null;
+                    return;
+                }
+            }
+        }
+    }
+
+    public void removeByName(String name) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (employees[i].getFullName().equals(name)) {
+                    employees[i] = null;
+                    return;
+                }
+            }
+        }
+    }
+
 
     public int length() {
         return employees.length;
@@ -59,6 +81,14 @@ public class EmployeeBook {
         return filteredEmployees;
     }
 
+    public EmployeeBook findBySalaryLess(double salary) {
+        return findBySalary(0, salary);
+    }
+
+    public EmployeeBook findBySalaryMore(double salary) {
+        return findBySalary(salary, Double.MAX_VALUE);
+    }
+
     public EmployeeBook findByDepartment(int department) {
         EmployeeBook filteredEmployees = new EmployeeBook(employees.length);
         int index = 0;
@@ -79,15 +109,13 @@ public class EmployeeBook {
         return findByDepartment(department).findEmployeesWithMinSalary();
     }
 
-    public EmployeeBook findEmployeesWithMaxSalary(int department) {
-        return findByDepartment(department).findEmployeesWithMaxSalary();
-    }
-
-
     public EmployeeBook findEmployeesWithMaxSalary() {
         return findBySalary(getMaxSalary());
     }
 
+    public EmployeeBook findEmployeesWithMaxSalary(int department) {
+        return findByDepartment(department).findEmployeesWithMaxSalary();
+    }
 
     public double getMinSalary() {
         double min = Double.MAX_VALUE;
@@ -129,18 +157,30 @@ public class EmployeeBook {
 
     public double getAverageSalary() {
         int count = 0;
-        double sum = 0.0;
         for (Employee e : employees) {
             if (e != null) {
-                sum += e.getSalary();
                 count++;
             }
         }
-        return (count == 0.0) ? 0.0 : sum / count;
+        return (count == 0.0) ? 0.0 : getSumOfSalaries() / count;
     }
 
     public double getAverageSalary(int department) {
         return findByDepartment(department).getAverageSalary();
+    }
+
+    public void raiseSalary(double byPercent) {
+        for (Employee e : employees) {
+            e.raiseSalary(byPercent);
+        }
+    }
+
+    public void raiseSalaryByDepartment(int department, double byPercent) {
+        for (int i = 0; i < employees.length; i++) {
+            if ((employees[i] != null) && (employees[i].isFromDepartment(department))) {
+                employees[i].raiseSalary(byPercent);
+            }
+        }
     }
 
 
