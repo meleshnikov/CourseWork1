@@ -1,14 +1,12 @@
-package crsWork;
-
-import java.util.Objects;
+package employee;
 
 public class Employee {
 
     private static int nextId;
-    private int id;
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private final int id;
+    private final String firstName;
+    private final String middleName;
+    private final String lastName;
     private int department;
     private double salary;
 
