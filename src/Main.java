@@ -8,30 +8,22 @@ public class Main {
     public static void main(String[] args) {
 
         // генерируем сотрудников
-        var employeeBook = new EmployeeBook(50);
+        var employeeBook = new EmployeeBook(5);
+
+        //Employee[] employees = new Employee[10000000];
 
         for (int i = 0; i < employeeBook.length(); i++) {
-            employeeBook.add(RandomEmployee.genRandomEmployee());
+            //employeeBook.add(RandomEmployee.genRandomEmployee());
+            employeeBook.add("Вася", "Иванович", "Пупкин", 1, 50_000);
+          //  employees[i] = RandomEmployee.genRandomEmployee();
         }
 
-        //System.out.println(employeeBook);
-        //System.out.println(employeeBook.findBySalary(90_000.0));
-        //System.out.println(employeeBook.findBySalary(60_000, 90_000));
-        //System.out.println(employeeBook.findByDepartment(1).findBySalary(60_000, 80_000));
         System.out.println(employeeBook);
-        //System.out.println(employeeBook.getMinSalary());
-        //System.out.println(employeeBook.getMaxSalary());
-        //System.out.println(employeeBook.findEmployeesWithMinSalary());
-        //System.out.println(employeeBook.findEmployeesWithMaxSalary());
-        //System.out.println(employeeBook.findEmployeesWithMinSalary(3));
-        //System.out.println(employeeBook.findEmployeesWithMaxSalary(3));
-        //System.out.println(employeeBook.getSumOfSalaries());
-        //System.out.println(employeeBook.getSumOfSalaries(3));
-        //System.out.println(employeeBook.getAverageSalary());
-        //System.out.println(employeeBook.getAverageSalary(3));
-        //System.out.println(employeeBook.findByDepartment(3));
-        //employeeBook.raiseSalaryByDepartment(3, 10.0);
-        //System.out.println(employeeBook.findByDepartment(3));
+        employeeBook.changeSalaryByName("Пупкин Вася Иванович", 60_000);
+        System.out.println(employeeBook);
+        employeeBook.changeDepartmentByName("Пупкин Вася Иванович", 3);
+        System.out.println(employeeBook);
+
 
     }
 

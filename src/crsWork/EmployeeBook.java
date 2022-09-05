@@ -21,6 +21,12 @@ public class EmployeeBook {
         employees[employees.length - 1] = employee;
     }
 
+    public void add(String fName, String mName, String lName, int department, double salary) {
+        Employee e = new Employee(fName, mName, lName, department, salary);
+        add(e);
+    }
+
+
     public void removeById(int id) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
@@ -41,6 +47,36 @@ public class EmployeeBook {
                 }
             }
         }
+    }
+
+    public Employee findByName(String name) {
+        for (Employee e : employees) {
+            if (e != null) {
+                if (e.getFullName().equals(name)) {
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Employee findById(int id) {
+        for (Employee e : employees) {
+            if (e != null) {
+                if (e.getId() == id) {
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void changeSalaryByName(String name, double salary) {
+        findByName(name).setSalary(salary);
+    }
+
+    public void changeDepartmentByName(String name, int department) {
+        findByName(name).setDepartment(department);
     }
 
 
@@ -176,9 +212,9 @@ public class EmployeeBook {
     }
 
     public void raiseSalaryByDepartment(int department, double byPercent) {
-        for (int i = 0; i < employees.length; i++) {
-            if ((employees[i] != null) && (employees[i].isFromDepartment(department))) {
-                employees[i].raiseSalary(byPercent);
+        for (Employee e : employees) {
+            if ((e != null) && (e.isFromDepartment(department))) {
+                e.raiseSalary(byPercent);
             }
         }
     }
