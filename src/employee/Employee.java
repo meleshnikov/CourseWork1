@@ -14,11 +14,13 @@ public class Employee {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        if (department > 5 || department < 1)
+        if (department > 5 || department < 1) {
             throw new IllegalArgumentException("Номер отдела должен быть от 1 до 5");
+        }
         this.department = department;
-        if (salary < 0)
+        if (salary < 0) {
             throw new IllegalArgumentException("Зарплата не может быть отрицательной");
+        }
         this.salary = salary;
         id = nextId++;
     }
