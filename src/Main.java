@@ -5,7 +5,11 @@ import random.RandomEmployee;
 import java.util.Arrays;
 
 public class Main {
+
+    public static Employee[] employees;
+
     public static void main(String[] args) {
+
 
         test1(10); // тест для заданий базовой и повышенной сложности
         test2(10); // тест для класса EmployeeBook
@@ -179,7 +183,7 @@ public class Main {
     // параметр eCount - количество сотрудников в отделе
     public static void test1(int eCount) {
 
-        Employee[] employees = new Employee[eCount];
+        employees = new Employee[eCount];
 
         // заполняем массив рандомными сотрудниками
         for (int i = 0; i < employees.length; i++) {
