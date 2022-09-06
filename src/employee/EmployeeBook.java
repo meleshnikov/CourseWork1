@@ -2,7 +2,7 @@ package employee;
 
 import java.util.Arrays;
 
-public final class EmployeeBook {
+public class EmployeeBook {
     private Employee[] employees;
 
     public EmployeeBook(int size) {
@@ -65,11 +65,17 @@ public final class EmployeeBook {
     }
 
     public void changeSalaryByName(String name, double newSalary) {
-        findByName(name).setSalary(newSalary);
+        Employee e = findByName(name);
+        if (e != null) {
+            e.setSalary(newSalary);
+        }
     }
 
     public void changeDepartmentByName(String name, int newDepartment) {
-        findByName(name).setDepartment(newDepartment);
+        Employee e = findByName(name);
+        if (e != null) {
+            e.setDepartment(newDepartment);
+        }
     }
 
 
