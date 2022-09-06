@@ -36,7 +36,7 @@ public final class RandomEmployee {
         }
 
         int department = generateRandomInt(1, 5);
-        double salary = generateRandomInt(60_000, 150_000);
+        double salary = generateRandomInt(40_000, 150_000);
 
         return new Employee(fName, mName, lName, department, salary);
     }

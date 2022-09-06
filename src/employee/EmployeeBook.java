@@ -71,12 +71,12 @@ public class EmployeeBook {
         return null;
     }
 
-    public void changeSalaryByName(String name, double salary) {
-        findByName(name).setSalary(salary);
+    public void changeSalaryByName(String name, double newSalary) {
+        findByName(name).setSalary(newSalary);
     }
 
-    public void changeDepartmentByName(String name, int department) {
-        findByName(name).setDepartment(department);
+    public void changeDepartmentByName(String name, int newDepartment) {
+        findByName(name).setDepartment(newDepartment);
     }
 
 
@@ -90,7 +90,7 @@ public class EmployeeBook {
         for (Employee e : employees) {
             str.append(e).append('\n');
         }
-        return str.toString();
+        return str.toString().trim();
     }
 
     public EmployeeBook findBySalary(double salary) {
@@ -216,6 +216,33 @@ public class EmployeeBook {
             if ((e != null) && (e.isFromDepartment(department))) {
                 e.raiseSalary(byPercent);
             }
+        }
+    }
+
+    public void printFullNames() {
+        for (Employee e : employees) {
+            if (e != null) {
+                System.out.println(e.getFullName());
+            }
+        }
+    }
+
+    public void printEmployees() {
+        System.out.println(this);
+    }
+
+    public void printEmployees(int department) {
+        EmployeeBook filteredEmployees = findByDepartment(department);
+        for (Employee e : filteredEmployees.employees) {
+            System.out.println(e.toString().replace(String.format("| Отдел: %d", e.getDepartment()), ""));
+        }
+    }
+
+    public void printFullNamesByDepartments() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Отдел: " + i);
+            findByDepartment(i).printFullNames();
+            System.out.println();
         }
     }
 
