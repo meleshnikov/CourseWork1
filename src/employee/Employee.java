@@ -82,7 +82,7 @@ public class Employee {
     }
 
     public boolean isSalaryEqual(double salary) {
-        return this.salary == salary;
+        return Double.compare(this.salary, salary) == 0;
     }
 
 
