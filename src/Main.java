@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static Employee[] employees;
+    private static Employee[] employees;
 
     public static void main(String[] args) {
 
@@ -181,7 +181,7 @@ public class Main {
 
     // метод для тестирования заданий базавой и повышенной сложности
     // параметр eCount - количество сотрудников в отделе
-    public static void test1(int eCount) {
+    private static void test1(int eCount) {
 
         employees = new Employee[eCount];
 
@@ -275,7 +275,7 @@ public class Main {
 
     // метод для тестирования класса EmployeeBook
     // параметр eCount - количество сотрудников в отделе
-    public static void test2(int eCount) {
+    private static void test2(int eCount) {
 
         var eBook = new EmployeeBook(eCount);
 
