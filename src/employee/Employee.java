@@ -33,6 +33,18 @@ public class Employee {
         return String.format("id: %3d| %35s| Отдел: %d| ЗП: %.1f руб", id, getFullName(), department, salary);
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public String getFullName() {
         return String.join(" ", lastName, firstName, middleName).trim();
     }
@@ -57,18 +69,7 @@ public class Employee {
         this.department = department;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
+    // метод индексирует ЗП на заданный процент
     public void raiseSalary(double byPercent) {
         double raise = salary * byPercent / 100.0;
         salary += raise;

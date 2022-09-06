@@ -7,20 +7,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-        // генерируем сотрудников
-        var employeeBook = new EmployeeBook(10_000);
-
-        //Employee[] employees = new Employee[10000000];
-
-        for (int i = 0; i < employeeBook.length(); i++) {
-            employeeBook.add(RandomEmployee.generateRandomEmployee());
-            //employeeBook.add("Вася", "Иванович", "Пупкин", 1, 50_000);
-          //  employees[i] = RandomEmployee.genRandomEmployee();
-        }
-
-        System.out.println(employeeBook);
-        System.out.println(employeeBook.findByDepartment(3));
-
+        test1(100); // тест для заданий базовой и повышенной сложности
 
     }
 
@@ -40,7 +27,7 @@ public class Main {
         Employee[] filteredEmployees = new Employee[employees.length];
         int length = 0;
         for (int i = 0; i < employees.length; i++) {
-            if ((employees[i] != null) && (employees[i].getSalary() > from) && (employees[i].getSalary() <= to)) {
+            if ((employees[i] != null) && (employees[i].getSalary() >= from) && (employees[i].getSalary() < to)) {
                 filteredEmployees[length++] = employees[i];
             }
         }
@@ -69,18 +56,22 @@ public class Main {
         return filteredEmployees;
     }
 
+    // метод возвращает сотрудников с минимальной ЗП
     public static Employee[] findEmployeesWithMinSalary(Employee[] employees) {
         return findBySalary(employees, findMinSalary(employees));
     }
 
+    // метод возвращает сотрудников с минимальной ЗП по отделу
     public static Employee[] findEmployeesWithMinSalary(Employee[] employees, int department) {
         return findEmployeesWithMinSalary(findByDepartment(employees, department));
     }
 
+    // метод возвращает сотрудников с максимальной ЗП
     public static Employee[] findEmployeesWithMaxSalary(Employee[] employees) {
         return findBySalary(employees, findMaxSalary(employees));
     }
 
+    // метод возвращает сотрудников с максимальной ЗП по отделу
     public static Employee[] findEmployeesWithMaxSalary(Employee[] employees, int department) {
         return findEmployeesWithMaxSalary(findByDepartment(employees, department));
     }
@@ -129,6 +120,7 @@ public class Main {
         }
     }
 
+    // метод выводит в консоль список всех сотрудников со всеми имеющимися по ним данными
     public static void printEmployees(Employee[] employees) {
         for (Employee e : employees) {
             if (e != null) {
@@ -137,6 +129,7 @@ public class Main {
         }
     }
 
+    // метод выводит в консоль всех сотрудников отдела (все данные, кроме отдела)
     public static void printEmployees(Employee[] employees, int department) {
         Employee[] filteredEmployees = findByDepartment(employees, department);
         for (Employee e : filteredEmployees) {
@@ -182,6 +175,101 @@ public class Main {
             System.out.print("-");
         }
         System.out.println();
+    }
+
+    // метод для тестирования заданий базавой и повышенной сложности
+    // параметр eCount - количество сотрудников в отделе
+    public static void test1(int eCount) {
+
+        Employee[] employees = new Employee[eCount];
+
+        // заполняем массив рандомными сотрудниками
+        for (int i = 0; i < employees.length; i++) {
+            employees[i] = RandomEmployee.generateRandomEmployee();
+        }
+
+        // 1
+        // а. печатаем список всех сотрудников со всеми имеющимися по ним данными
+        printEmployees(employees);
+        printDelimiter(employees[0]); // разделитель для удобства чтения
+
+        // b. сумма затрат на ЗП в месяц
+        System.out.printf("Сумма затрат на ЗП в месяц: %.1f руб\n", getSumOfSalaries(employees));
+        printDelimiter(employees[0]);
+
+        // c. поиск сотрудников с минимальной ЗП
+        System.out.println("Сотрудники с минимальной ЗП:");
+        printEmployees(findEmployeesWithMinSalary(employees));
+        printDelimiter(employees[0]);
+
+        // d. поиск сотрудников с максимальной ЗП
+        System.out.println("Сотрудники с максимальной ЗП:");
+        printEmployees(findEmployeesWithMaxSalary(employees));
+        printDelimiter(employees[0]);
+
+        // e. средняя ЗП
+        System.out.printf("Среднее значение ЗП: %.1f руб\n", getAverageSalary(employees));
+        printDelimiter(employees[0]);
+
+        // f. печатаем Ф.И.О. всех сотрудников
+        printFullNames(employees);
+        printDelimiter(employees[0]);
+
+        double percent = 10.0;
+
+        // 2.1 Индексируем ЗП
+        raiseSalary(employees, percent);
+        System.out.printf("ЗП после индексации на %.1f%%\n", percent);
+        printEmployees(employees);
+        printDelimiter(employees[0]);
+
+        // 2.2 тест методов по отделу
+        for (int department = 1; department <= 5; department++) {
+
+            // a. поиск сотрудников с минимальной ЗП по отделу
+            System.out.printf("Сотрудники с минимальной ЗП в %d отделе:\n", department);
+            printEmployees(findEmployeesWithMinSalary(employees, department));
+            printDelimiter(employees[0]);
+
+            // b. поиск сотрудников с максимальной ЗП по отделу
+            System.out.printf("Сотрудники с максимальной ЗП в %d отделе:\n", department);
+            printEmployees(findEmployeesWithMaxSalary(employees, department));
+            printDelimiter(employees[0]);
+
+            // c. сумма затрат на ЗП по отделу
+            System.out.printf("Сумма затрат на ЗП в %d отделе: %.1f руб\n", department, getSumOfSalaries(employees, department));
+            printDelimiter(employees[0]);
+
+            // d. средняя ЗП по отделу
+            System.out.printf("Среднее значение ЗП по %d отделу: %.1f руб\n", department, getAverageSalary(employees, department));
+            printDelimiter(employees[0]);
+
+            // e. Индексируем ЗП в отделе
+            raiseSalaryByDepartment(employees, department, percent);
+            System.out.printf("ЗП в %d отделе после индексации на %.1f%%\n", department, percent);
+
+            // печатаем всех сотрудников отдела (все данные, кроме отдела).
+            printEmployees(employees, department);
+            printDelimiter(employees[0]);
+        }
+
+        // 2.3
+        double salary = 120_000.0;
+
+        // список сотрудников после всех индексаций
+        printEmployees(employees);
+        printDelimiter(employees[0]);
+
+        // a. поиск всех сотрудников с зарплатой меньше числа
+        System.out.printf("Сотрудники с ЗП <= %.1f руб\n", salary);
+        printEmployees(findBySalaryLess(employees, salary));
+        printDelimiter(employees[0]);
+
+        // b. поиск всех сотрудников с зарплатой больше числа
+        System.out.printf("Сотрудники с ЗП > %.1f руб\n", salary);
+        printEmployees(findBySalaryMore(employees, salary));
+        printDelimiter(employees[0]);
+
     }
 
 
