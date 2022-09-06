@@ -2,7 +2,7 @@ package employee;
 
 import java.util.Arrays;
 
-public class EmployeeBook {
+public final class EmployeeBook {
     private Employee[] employees;
 
     public EmployeeBook(int size) {
@@ -29,32 +29,27 @@ public class EmployeeBook {
 
     public void removeById(int id) {
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null) {
-                if (employees[i].getId() == id) {
-                    employees[i] = null;
-                    return;
-                }
+            if ((employees[i] != null) && (employees[i].getId() == id)) {
+                employees[i] = null;
+                return;
             }
         }
     }
 
     public void removeByName(String name) {
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null) {
-                if (employees[i].getFullName().equals(name)) {
-                    employees[i] = null;
-                    return;
-                }
+            if ((employees[i] != null) && (employees[i].getFullName().equals(name))) {
+                employees[i] = null;
+                return;
             }
         }
     }
 
+
     public Employee findByName(String name) {
         for (Employee e : employees) {
-            if (e != null) {
-                if (e.getFullName().equals(name)) {
-                    return e;
-                }
+            if ((e != null) && (e.getFullName().equals(name))) {
+                return e;
             }
         }
         return null;
@@ -62,10 +57,8 @@ public class EmployeeBook {
 
     public Employee findById(int id) {
         for (Employee e : employees) {
-            if (e != null) {
-                if (e.getId() == id) {
-                    return e;
-                }
+            if ((e != null) && (e.getId() == id)) {
+                return e;
             }
         }
         return null;
@@ -156,10 +149,8 @@ public class EmployeeBook {
     public double getMinSalary() {
         double min = Double.MAX_VALUE;
         for (Employee e : employees) {
-            if (e != null) {
-                if (min > e.getSalary()) {
-                    min = e.getSalary();
-                }
+            if ((e != null) && (min > e.getSalary())) {
+                min = e.getSalary();
             }
         }
         return min;
@@ -168,10 +159,8 @@ public class EmployeeBook {
     public double getMaxSalary() {
         double max = 0;
         for (Employee e : employees) {
-            if (e != null) {
-                if (max < e.getSalary()) {
-                    max = e.getSalary();
-                }
+            if ((e != null) && (max < e.getSalary())) {
+                max = e.getSalary();
             }
         }
         return max;

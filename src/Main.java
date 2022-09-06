@@ -142,10 +142,8 @@ public class Main {
     public static double findMinSalary(Employee[] employees) {
         double min = Double.MAX_VALUE;
         for (Employee e : employees) {
-            if (e != null) {
-                if (min > e.getSalary()) {
-                    min = e.getSalary();
-                }
+            if ((e != null) && (min > e.getSalary())) {
+                min = e.getSalary();
             }
         }
         return min;
@@ -155,10 +153,8 @@ public class Main {
     public static double findMaxSalary(Employee[] employees) {
         double max = 0.0;
         for (Employee e : employees) {
-            if (e != null) {
-                if (max < e.getSalary()) {
-                    max = e.getSalary();
-                }
+            if ((e != null) && (max < e.getSalary())) {
+                max = e.getSalary();
             }
         }
         return max;
@@ -166,8 +162,9 @@ public class Main {
 
     public static void printFullNames(Employee[] employees) {
         for (Employee e : employees) {
-            if (e != null)
+            if (e != null) {
                 System.out.println(e.getFullName());
+            }
         }
     }
 
